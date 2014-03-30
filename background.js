@@ -11,10 +11,14 @@ function deleteCurrentTab()
 {
 	chrome.tabs.getSelected(window.id, function(tab) {
 		chrome.history.search({text: tab.url}, function(results) {
-			results.forEach(function(rs, i) {
-				console.log("Deleted: " + rs.url);
-				chrome.history.deleteUrl({url: rs.url});
-			});
+			if (results.length == 0) {
+				console.log("Any matched urls not found.");
+			} else {
+				results.forEach(function(rs, i) {
+					console.log("Deleted: " + rs.url);
+					chrome.history.deleteUrl({url: rs.url});
+				});
+			}
 		});
 	});
 }
