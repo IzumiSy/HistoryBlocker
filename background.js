@@ -13,7 +13,7 @@ function deleteCurrentTab()
 		chrome.history.search({text: tab.url}, function(results) {
 			results.forEach(function(rs, i) {
 				console.log("Deleted: " + rs.url);
-				// chrome.history.deleteUrl({url: rs.url});
+				chrome.history.deleteUrl({url: rs.url});
 			});
 		});
 	});
