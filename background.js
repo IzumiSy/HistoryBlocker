@@ -2,37 +2,29 @@
 // background.js
 
 var isExtensionWorking;
+var workingSince;
+var date;
 
 // Initialize
 chrome.browserAction.setBadgeBackgroundColor({color: "#00FF00"});
 isExtensionWorking = false;
-
-function removeUrl(url)
-{
-	chrome.history.search({text: url}, function(results) {
-		if (results.length == 0) {
-			console.log("Any matched urls not found.");
-		} else {
-			results.forEach(function(rs, i) {
-				chrome.history.deleteUrl({url: rs.url}, function() {
-					console.log("Deleted: " + rs.url);
-				});
-			});
-		}
-	});
-}
-
-function deleteCurrentTab()
-{
-	chrome.tabs.getSelected(window.id, function(tab) {
-		removeUrl(tab.url);
-	});
-}
+workingSince = 0;
+date = new Date();
 
 chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 	if (isExtensionWorking) {
 		if (info.status == "complete") {
-			removeUrl(tab.url);
+			chrome.browsingData.removeHistory(
+				{
+					"since": workingSince,
+					"originTypes": {
+						"unprotectedWeb": true
+					}
+				},
+				function() {
+					console.log("Eliminated: " + tab.url);
+				}
+			);
 		}
 	}
 });
@@ -43,7 +35,8 @@ chrome.browserAction.onClicked.addListener(function() {
 	isExtensionWorking = ! isExtensionWorking;
 	if (isExtensionWorking == true) {
 		status = "ON";
-		deleteCurrentTab();
+		workingSince = date.getTime();
+		console.log("Activated on: " + workingSince);
 	} else {
 		status = "";
 	}
