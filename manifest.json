@@ -6,8 +6,10 @@
 	"description": "Block some specific pages from recording to browser's history",
 	
 	"permissions": [
-		"history", "tabs"
-	],
+    "*://*/*",
+    "history", 
+    "tabs" 
+  ],
 	
 	"options_page": "options.html",
 	

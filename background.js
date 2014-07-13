@@ -7,21 +7,35 @@ var isExtensionWorking;
 chrome.browserAction.setBadgeBackgroundColor({color: "#00FF00"});
 isExtensionWorking = false;
 
+function removeUrl(url)
+{
+	chrome.history.search({text: url}, function(results) {
+		if (results.length == 0) {
+			console.log("Any matched urls not found.");
+		} else {
+			results.forEach(function(rs, i) {
+				chrome.history.deleteUrl({url: rs.url}, function() {
+					console.log("Deleted: " + rs.url);
+				});
+			});
+		}
+	});
+}
+
 function deleteCurrentTab()
 {
 	chrome.tabs.getSelected(window.id, function(tab) {
-		chrome.history.search({text: tab.url}, function(results) {
-			if (results.length == 0) {
-				console.log("Any matched urls not found.");
-			} else {
-				results.forEach(function(rs, i) {
-					console.log("Deleted: " + rs.url);
-					chrome.history.deleteUrl({url: rs.url});
-				});
-			}
-		});
+		removeUrl(tab.url);
 	});
 }
+
+chrome.tabs.onUpdated.addListener(function(id, info, tab) {
+	if (isExtensionWorking) {
+		if (info.status == "complete") {
+			removeUrl(tab.url);
+		}
+	}
+});
 
 chrome.browserAction.onClicked.addListener(function() {
 	var status;
