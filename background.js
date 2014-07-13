@@ -29,7 +29,8 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 	}
 });
 
-chrome.browserAction.onClicked.addListener(function() {
+function toggleActivation()
+{
 	var status;
 	
 	isExtensionWorking = ! isExtensionWorking;
@@ -41,4 +42,12 @@ chrome.browserAction.onClicked.addListener(function() {
 		status = "";
 	}
 	chrome.browserAction.setBadgeText({text: status});
+}
+
+chrome.commands.onCommand.addListener(function(command) {
+	if (command == "toggle-blocking") {
+		toggleActivation();
+	}
 });
+
+chrome.browserAction.onClicked.addListener(toggleActivation);

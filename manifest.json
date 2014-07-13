@@ -20,5 +20,12 @@
 		"default_title": "History Blocker"
 	},
 	
+  "commands": {
+    "toggle-blocking": {
+      "suggested_key": { "default": "Ctrl+Shift+T" },
+      "description": "Toggle blocking"
+    }
+  },
+
 	"icons": { "128": "main.png" }	
 }
