@@ -3,7 +3,6 @@
 
 var isExtensionWorking;
 var workingSince;
-var date;
 
 // Initialize
 chrome.browserAction.setBadgeBackgroundColor({color: "#00FF00"});
@@ -35,8 +34,7 @@ function toggleActivation()
 	isExtensionWorking = ! isExtensionWorking;
 	if (isExtensionWorking == true) {
 		status = "ON";
-		date = new Date();
-		workingSince = date.getTime();
+		workingSince = new Date().getTime();
 		console.log("Activated on: " + workingSince);
 	} else {
 		status = "";
