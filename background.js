@@ -9,7 +9,6 @@ var date;
 chrome.browserAction.setBadgeBackgroundColor({color: "#00FF00"});
 isExtensionWorking = false;
 workingSince = 0;
-date = new Date();
 
 chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 	if (isExtensionWorking) {
@@ -36,6 +35,7 @@ function toggleActivation()
 	isExtensionWorking = ! isExtensionWorking;
 	if (isExtensionWorking == true) {
 		status = "ON";
+		date = new Date();
 		workingSince = date.getTime();
 		console.log("Activated on: " + workingSince);
 	} else {
