@@ -3,7 +3,7 @@
 	"version": "1.0",
 	"manifest_version": 2,
 	
-	"description": "Blocks some specific pages from recording to browser's history",
+	"description": "Blocks specific webpages from being recorded to history",
 	
 	"permissions": [
     "browsingData"
