@@ -6,7 +6,7 @@
 	"description": "Blocks specific webpages from being recorded to history",
 	
 	"permissions": [
-    "browsingData"
+    "browsingData", "tabs"
   ],
 	
 	"options_page": "options.html",

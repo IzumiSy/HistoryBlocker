@@ -18,9 +18,8 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 					"originTypes": {
 						"unprotectedWeb": true
 					}
-				},
-				function() {
-					console.log("Eliminated: " + tab.url);
+				}, function() {
+					console.log("Removed: " + tab.url);
 				}
 			);
 		}
