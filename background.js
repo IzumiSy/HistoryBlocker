@@ -33,7 +33,7 @@ function toggleActivation()
 	isExtensionWorking = ! isExtensionWorking;
 	if (isExtensionWorking == true) {
 		status = "ON";
-		workingSince = new Date().getTime();
+		workingSince = (new Date()).getTime();
 		console.log("Activated on: " + workingSince);
 	} else {
 		status = "";
