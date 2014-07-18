@@ -5,7 +5,6 @@ var isExtensionWorking;
 var workingSince;
 
 // Initialize
-chrome.browserAction.setBadgeBackgroundColor({color: "#00FF00"});
 isExtensionWorking = false;
 workingSince = 0;
 
