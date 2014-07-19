@@ -6,11 +6,17 @@
 </head>
 <body>
 	<div style="background-color: #A9A9A9;">
-		<h1 style="margin-left: 10px;">Options</h1>
+		<h1 style="margin-left: 10px;">Advanced</h1>
 	</div>
 	<p>
-		<button id="save">Save and Quit</button>
-		<button id="cancel">Cancel</button>
+		Remove history in specific period<br>
+		<select id="period">
+			<option value="1hour">1 Hour</option>
+			<option value="6hours">6 Hours</option>
+			<option value="12hours">12 Hours</option>
+			<option value="1day">1 Day</option>
+		</select>
+		<button id="remove">Remove</button>
 	</p>
 	<script src="options.js"></script>
 </body>
