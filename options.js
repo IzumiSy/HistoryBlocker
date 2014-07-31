@@ -1,8 +1,11 @@
 
 // options.js
 
+var BG = chrome.extension.getBackgroundPage();
+
 document.body.onload = function() {
-	// Load settings;
+	document.getElementById("remove_cookies").checked = localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false;
+	document.getElementById("remove_cache").checked = localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false;
 }
 
 document.getElementById("remove").onclick = function() {
@@ -33,7 +36,9 @@ document.getElementById("remove").onclick = function() {
 }
 
 document.getElementById("save").onclick = function() {
-	// Save settings;
+	localStorage.setItem(BG.OPTION_REMOVE_COOKIES, document.getElementById("remove_cookies").checked);
+	localStorage.setItem(BG.OPTION_REMOVE_CACHE, document.getElementById("remove_cache").checked);
+	window.close();
 }
 
 document.getElementById("cancel").onclick = function() {
