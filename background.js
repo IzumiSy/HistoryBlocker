@@ -14,12 +14,16 @@ workingSince = 0;
 chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 	if (isExtensionWorking) {
 		if (info.status == "complete") {
-			chrome.browsingData.removeHistory(
+			chrome.browsingData.remove(
 				{
 					"since": workingSince,
 					"originTypes": {
 						"unprotectedWeb": true
 					}
+				}, {
+					"history": true,
+					"cookies": localStorage.getItem(OPTION_REMOVE_COOKIES) == "true" ? true : false,
+					"cache": localStorage.getItem(OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
 					console.log("Removed: " + tab.url);
 				}
