@@ -21,12 +21,16 @@ document.getElementById("remove").onclick = function() {
 				case "12hours": during = onehour * 12; break;
 				case "1day": during = onehour * 24; break;
 			}
-			chrome.browsingData.removeHistory(
+			chrome.browsingData.remove(
 				{
 					"since": (new Date()).getTime() - during,
 					"originTypes": {
 						"unprotectedWeb": true
 					}
+				}, {
+					"history": true,
+					"cookies": localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false,
+					"cache": localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
 					alert("Successfully removed.");
 				}
