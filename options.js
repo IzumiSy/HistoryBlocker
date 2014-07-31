@@ -1,6 +1,10 @@
 
 // options.js
 
+document.body.onload = function() {
+	// Load settings;
+}
+
 document.getElementById("remove").onclick = function() {
 	var options = document.getElementById("period").options;
 	var onehour = 3600000;
@@ -26,4 +30,12 @@ document.getElementById("remove").onclick = function() {
 			);
 		}
 	}
+}
+
+document.getElementById("save").onclick = function() {
+	// Save settings;
+}
+
+document.getElementById("cancel").onclick = function() {
+	window.close();
 }

@@ -4,6 +4,9 @@
 var isExtensionWorking;
 var workingSince;
 
+const OPTION_REMOVE_COOKIES = "RemoveCookies";
+const OPTION_REMOVE_CACHE = "RemoveCache";
+
 // Initialize
 isExtensionWorking = false;
 workingSince = 0;
