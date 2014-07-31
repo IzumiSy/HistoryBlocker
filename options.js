@@ -20,6 +20,8 @@ document.getElementById("remove").onclick = function() {
 					"originTypes": {
 						"unprotectedWeb": true
 					}
+				}, function() {
+					alert("Successfully removed.");
 				}
 			);
 		}
