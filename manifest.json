@@ -3,7 +3,7 @@
 	"version": "1.1",
 	"manifest_version": 2,
 	
-	"description": "Blocks specific webpages from being recorded to history",
+	"description": "Blocks webpages from being recorded to history",
 	
 	"permissions": [
     "browsingData", "tabs"
