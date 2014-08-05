@@ -6,12 +6,12 @@ var workingSince;
 
 const OPTION_REMOVE_COOKIES = "RemoveCookies";
 const OPTION_REMOVE_CACHE = "RemoveCache";
+const WORKING_HISTORY = "workingHistory";
 
 // Initialize
 isExtensionWorking = false;
 workingSince = 0;
-dataHistory = [];
-temporalHistory = [];
+workingHistory = [];
 
 chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 	if (isExtensionWorking) {
@@ -28,10 +28,7 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 					"cache": localStorage.getItem(OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
 					console.log("Removed: " + tab.url);
-					temporalHistory.push({
-						"title": tab.title,
-						"url": tab.url
-					});
+					workingHistory.push({"title": tab.title, "url": tab.url});
 				}
 			);
 		}
@@ -43,14 +40,14 @@ function toggleActivation()
 	var status;
 	
 	isExtensionWorking = ! isExtensionWorking;
+	status = isExtensionWorking === true ? "ON" : "";
 	if (isExtensionWorking == true) {
-		status = "ON";
 		workingSince = (new Date()).getTime();
-		temporalHistory = [];
-		console.log("Activated on: " + workingSince);
+		workingHistory.push({"title": "<<Activated>>", "url": workingSince});
 	} else {
-		status = "";
-		dataHistory.push(temporalHistory);
+		workingHistory.push({"title": "<<Deactivated>>", "url": (new Date()).getTime()});
+		localStorage.setItem(WORKING_HISTORY, JSON.stringify(workingHistory));
+		temporalHistory = [];
 	}
 	chrome.browserAction.setBadgeText({text: status});
 }
