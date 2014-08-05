@@ -49,6 +49,16 @@ document.body.onload = function() {
 	loadHistoryItems();
 }
 
+document.getElementById("clear").onclick = function() {
+	var items = document.getElementById("items");
+
+	while (items.firstChild) {
+		items.removeChild(items.firstChild);
+	}
+	localStorage.removeItem(BG.WORKING_HISTORY);
+	alert("All history successfully cleaned up");
+}
+
 document.getElementById("remove").onclick = function() {
 	var options = document.getElementById("period").options;
 	var onehour = 3600000;
