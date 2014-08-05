@@ -7,6 +7,8 @@ var workingSince;
 const OPTION_REMOVE_COOKIES = "RemoveCookies";
 const OPTION_REMOVE_CACHE = "RemoveCache";
 const WORKING_HISTORY = "workingHistory";
+const LOG_ACTIVATED = "Activated on ";
+const LOG_DEACTIVATED = "Deactivated on ";
 
 // Initialize
 isExtensionWorking = false;
@@ -43,9 +45,9 @@ function toggleActivation()
 	status = isExtensionWorking === true ? "ON" : "";
 	if (isExtensionWorking == true) {
 		workingSince = (new Date()).getTime();
-		workingHistory.push({"title": "<<Activated>>", "url": workingSince});
+		workingHistory.push({"title": LOG_ACTIVATED, "url": workingSince});
 	} else {
-		workingHistory.push({"title": "<<Deactivated>>", "url": (new Date()).getTime()});
+		workingHistory.push({"title": LOG_DEACTIVATED, "url": (new Date()).getTime()});
 		localStorage.setItem(WORKING_HISTORY, JSON.stringify(workingHistory));
 		temporalHistory = [];
 	}

@@ -6,9 +6,9 @@
 	<style>
 	body {
 		font-family:Arial, Helvetica, sans-serif;
+		font-size: 12px;
 	}
 	.warning {
-		font-family:Arial, Helvetica, sans-serif;
 		font-size:11px;
 		width: 300px;
 		border: 1px solid;
@@ -19,6 +19,22 @@
 		color: #9F6000;
 		background-color: #FEEFB3;
 		background-image: url('warning.png');
+	}
+	img.favicon {
+		margin: 0 5px 3px 0;
+		vertical-align: middle;
+	}
+	hr {
+		border: 0;
+		height: 0;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+	}
+	#items {
+		list-style-type: none
+	}
+	#items li {
+		margin-bottom: 5px;
 	}
 	</style>
 </head>
@@ -70,9 +86,10 @@
 	<!-- History Tab -->
 	<div id="history">
 		<p>History recorded during working</p>
-		<div id="history_items">
+		<hr/>
+		<ul id="items">
 			<!-- History displayes here -->
-		</div>
+		</ul>
 	</div>
 	<script src="options.js"></script>
 </body>

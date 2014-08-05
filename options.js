@@ -3,6 +3,8 @@
 
 var BG = chrome.extension.getBackgroundPage();
 
+const FAVICON_API = "http://www.google.com/s2/favicons?domain=";
+
 document.getElementById("tab_options").onclick = function() { changeTab("options"); return false; }
 document.getElementById("tab_history").onclick = function() { changeTab("history"); return false; }
 
@@ -12,10 +14,39 @@ function changeTab(tab) {
 	document.getElementById(tab).style.display = "block";
 }
 
+function loadHistoryItems() {
+	var newAnchor, newList, newDiv, newFavicon;
+	var mainMenu = document.getElementById("items");
+	var items = [];
+
+	items = JSON.parse(localStorage.getItem(BG.WORKING_HISTORY));
+	items.forEach(function(item, i) {
+		newAnchor = document.createElement("a");
+		newList = document.createElement("li");
+		newSpan = document.createElement("span");
+		if (item["title"] == BG.LOG_ACTIVATED || item["title"] == BG.LOG_DEACTIVATED) {
+			newAnchor.innerHTML = "<b>" + item["title"] + item["url"] + "</b>";
+		} else {
+			newFavicon = document.createElement("img");
+			newFavicon.setAttribute("src", FAVICON_API + item["url"]);
+			newFavicon.setAttribute("class", "favicon");
+			newAnchor.setAttribute("href", item["url"]);
+			newAnchor.appendChild(newFavicon);
+			newAnchor.appendChild(document.createTextNode(item["title"]));
+			newSpan.appendChild(document.createTextNode(" " + item["url"]));
+			newSpan.setAttribute("style", "color: #C0C0C0");
+		}
+		newList.appendChild(newAnchor);
+		newList.appendChild(newSpan);
+		mainMenu.appendChild(newList);
+	});
+}
+
 document.body.onload = function() {
 	changeTab("options");
 	document.getElementById("remove_cookies").checked = localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false;
 	document.getElementById("remove_cache").checked = localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false;
+	loadHistoryItems();
 }
 
 document.getElementById("remove").onclick = function() {
