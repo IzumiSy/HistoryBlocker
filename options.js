@@ -3,7 +3,17 @@
 
 var BG = chrome.extension.getBackgroundPage();
 
+document.getElementById("tab_options").onclick = function() { changeTab("options"); return false; }
+document.getElementById("tab_history").onclick = function() { changeTab("history"); return false; }
+
+function changeTab(tab) {
+	document.getElementById("options").style.display = "none";
+	document.getElementById("history").style.display = "none";
+	document.getElementById(tab).style.display = "block";
+}
+
 document.body.onload = function() {
+	changeTab("options");
 	document.getElementById("remove_cookies").checked = localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false;
 	document.getElementById("remove_cache").checked = localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false;
 }
