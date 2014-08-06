@@ -20,26 +20,28 @@ function loadHistoryItems() {
 	var items = [];
 
 	items = JSON.parse(localStorage.getItem(BG.WORKING_HISTORY));
-	items.forEach(function(item, i) {
-		newAnchor = document.createElement("a");
-		newList = document.createElement("li");
-		newSpan = document.createElement("span");
-		if (item["title"] == BG.LOG_ACTIVATED || item["title"] == BG.LOG_DEACTIVATED) {
-			newAnchor.innerHTML = "<b>" + item["title"] + item["url"] + "</b>";
-		} else {
-			newFavicon = document.createElement("img");
-			newFavicon.setAttribute("src", FAVICON_API + item["url"]);
-			newFavicon.setAttribute("class", "favicon");
-			newAnchor.setAttribute("href", item["url"]);
-			newAnchor.appendChild(newFavicon);
-			newAnchor.appendChild(document.createTextNode(item["title"]));
-			newSpan.appendChild(document.createTextNode(" " + item["url"]));
-			newSpan.setAttribute("style", "color: #C0C0C0");
-		}
-		newList.appendChild(newAnchor);
-		newList.appendChild(newSpan);
-		mainMenu.appendChild(newList);
-	});
+	if (items) {
+		items.forEach(function(item, i) {
+			newAnchor = document.createElement("a");
+			newList = document.createElement("li");
+			newSpan = document.createElement("span");
+			if (item["title"] == BG.LOG_ACTIVATED || item["title"] == BG.LOG_DEACTIVATED) {
+				newAnchor.innerHTML = "<b>" + item["title"] + item["url"] + "</b>";
+			} else {
+				newFavicon = document.createElement("img");
+				newFavicon.setAttribute("src", FAVICON_API + item["url"]);
+				newFavicon.setAttribute("class", "favicon");
+				newAnchor.setAttribute("href", item["url"]);
+				newAnchor.appendChild(newFavicon);
+				newAnchor.appendChild(document.createTextNode(item["title"]));
+				newSpan.appendChild(document.createTextNode(" " + item["url"]));
+				newSpan.setAttribute("style", "color: #C0C0C0");
+			}
+			newList.appendChild(newAnchor);
+			newList.appendChild(newSpan);
+			mainMenu.appendChild(newList);
+		});
+	}
 }
 
 document.body.onload = function() {
