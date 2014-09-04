@@ -64,7 +64,8 @@ document.getElementById("clear").onclick = function() {
 document.getElementById("remove").onclick = function() {
 	var button = document.getElementById("remove");
 	var target = document.getElementById("spinner");
-	var options = document.getElementById("period").options;
+	var period = document.getElementById("period");
+	var options = period.options;
 	var onehour = 3600000;
 	var during
 
@@ -77,6 +78,7 @@ document.getElementById("remove").onclick = function() {
 		left: "180px"
 	}).spin(target);
 	button.disabled = true;
+	period.disabled = true;
 
 	for (var i = 0;i < options.length;i++) {
 		if (options[i].selected) {
@@ -97,8 +99,9 @@ document.getElementById("remove").onclick = function() {
 					"cookies": localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false,
 					"cache": localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
-					spinner.stop();
 					button.disabled = false;
+					period.disabled = false;
+					spinner.stop();
 					alert("Successfully removed.");
 				}
 			);
