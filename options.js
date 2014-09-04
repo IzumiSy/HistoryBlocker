@@ -62,9 +62,21 @@ document.getElementById("clear").onclick = function() {
 }
 
 document.getElementById("remove").onclick = function() {
+	var button = document.getElementById("remove");
+	var target = document.getElementById("spinner");
 	var options = document.getElementById("period").options;
 	var onehour = 3600000;
 	var during
+
+	var spinner = new Spinner({
+		lines: 9,
+		width: 2,
+		length: 2,
+		radius: 4,
+		top: "87px",
+		left: "180px"
+	}).spin(target);
+	button.disabled = true;
 
 	for (var i = 0;i < options.length;i++) {
 		if (options[i].selected) {
@@ -85,6 +97,8 @@ document.getElementById("remove").onclick = function() {
 					"cookies": localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false,
 					"cache": localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
+					spinner.stop();
+					button.disabled = false;
 					alert("Successfully removed.");
 				}
 			);
