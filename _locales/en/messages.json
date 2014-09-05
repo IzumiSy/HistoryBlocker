@@ -1,0 +1,16 @@
+{
+  "extName": {
+    "message": "History Blocker",
+    "description": "Extension name"
+  },
+  
+  "extDesc": {
+    "message": "Blocks webpages from being recorded to history",
+    "description": "Extension description"
+  },
+  
+  "extShortcutDesc": {
+    "message": "Toggle blocking",
+    "description": "Shortcut description"
+  }
+}
