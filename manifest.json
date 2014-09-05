@@ -1,6 +1,6 @@
 {
 	"name": "History Blocker",
-	"version": "1.2",
+	"version": "1.3",
 	"manifest_version": 2,
 	
 	"description": "Blocks webpages from being recorded to history",
