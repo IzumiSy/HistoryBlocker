@@ -30,7 +30,7 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 					"cache": localStorage.getItem(OPTION_REMOVE_CACHE) == "true" ? true : false
 				}, function() {
 					console.log("Removed: " + tab.url);
-					workingHistory.push({"title": tab.title, "url": tab.url});
+					workingHistory.unshift({"title": tab.title, "url": tab.url});
 				}
 			);
 		}
@@ -47,9 +47,9 @@ function toggleActivation()
 	md = new Date();
 	if (isExtensionWorking == true) {
 		workingSince = md.getTime();
-		workingHistory.push({"title": LOG_ACTIVATED, "url": md.toString()});
+		workingHistory.unshift({"title": LOG_ACTIVATED, "url": md.toString()});
 	} else {
-		workingHistory.push({"title": LOG_DEACTIVATED, "url": md.toString()});
+		workingHistory.unshift({"title": LOG_DEACTIVATED, "url": md.toString()});
 		localStorage.setItem(WORKING_HISTORY, JSON.stringify(workingHistory));
 		temporalHistory = [];
 	}
