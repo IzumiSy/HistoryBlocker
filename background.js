@@ -39,15 +39,17 @@ chrome.tabs.onUpdated.addListener(function(id, info, tab) {
 
 function toggleActivation()
 {
+	var md;
 	var status;
 	
 	isExtensionWorking = ! isExtensionWorking;
 	status = isExtensionWorking === true ? "ON" : "";
+	md = new Date();
 	if (isExtensionWorking == true) {
-		workingSince = (new Date()).getTime();
-		workingHistory.push({"title": LOG_ACTIVATED, "url": workingSince});
+		workingSince = md.getTime();
+		workingHistory.push({"title": LOG_ACTIVATED, "url": md.toString()});
 	} else {
-		workingHistory.push({"title": LOG_DEACTIVATED, "url": (new Date()).getTime()});
+		workingHistory.push({"title": LOG_DEACTIVATED, "url": md.toString()});
 		localStorage.setItem(WORKING_HISTORY, JSON.stringify(workingHistory));
 		temporalHistory = [];
 	}
