@@ -45,53 +45,49 @@
 <body>
 	<!-- Tab box -->
 	<div style="background-color: #A9A9A9;">
-		<h1 style="margin-left: 10px;">Advanced
-		[<a href="#" id="tab_options">Options</a> / 
-		 <a href="#" id="tab_history">History</a>]
+		<h1 style="margin-left: 10px;">
+     <span id="page-title"></span>
+		[<a href="#" id="tab-options">Options</a> / 
+		 <a href="#" id="tab-history">History</a>]
 		</h1>
 	</div>
 
 	<!-- Options Tab -->
 	<div id="options">
 		<p>
-			Remove history in specific period<br>
+			<div id="caption-remove-period"></div>
 			<select id="period">
 				<option value="1hour">1 Hour</option>
 				<option value="6hours">6 Hours</option>
 				<option value="12hours">12 Hours</option>
 				<option value="1day">1 Day</option>
 			</select>
-			<button id="remove">Remove</button>
+			<button id="remove-button">Remove</button>
       <span id="spinner"></span>
 		</p>
 		<p>
 			<table>
 			<tr>
-				<td><label for="remove_cookies">Remove cookies:</label></td>
-				<td><input type="checkbox" id="remove_cookies" /></td>
+				<td><label id="text-remove-cookies" for="remove-cookies">Remove cookies:</label></td>
+				<td><input type="checkbox" id="remove-cookies" /></td>
 			</tr>
 			<tr>
-				<td><label for="remove_cache">Remove cache:</label></td>
-				<td><input type="checkbox" id="remove_cache" /></td>
+				<td><label id="text-remove-cache" for="remove-cache">Remove cache:</label></td>
+				<td><input type="checkbox" id="remove-cache" /></td>
 			</tr>
 			</table>
 		</p>
-			<div class="warning">
-				<b>Warning:</b>
-				If you use History Blocker with
-				<u>cookies removing</u>
-				on, you might not be able to use some websites like Facebook that use cookies for users logging in.
-			</div>
+			<div id="warning-message" class="warning"></div>
 		<p>
-			<button id="save">Save and Quit</button>
-			<button id="cancel">Cancel</button>
+			<button id="save-button"></button>
+			<button id="cancel-button"></button>
 		</p>
 	</div>
 
 	<!-- History Tab -->
 	<div id="history">
-		<button id="clear" style="float: right">Clear all</button>
-		<p>History recorded during working</p>
+		<button id="clear-button" style="float: right"></button>
+		<div id="history-caption"></div>
 		<hr/>
 		<ul id="items">
 			<!-- History displayes here -->

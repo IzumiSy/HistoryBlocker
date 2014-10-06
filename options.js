@@ -5,8 +5,8 @@ var BG = chrome.extension.getBackgroundPage();
 
 const FAVICON_API = "http://www.google.com/s2/favicons?domain=";
 
-document.getElementById("tab_options").onclick = function() { changeTab("options"); return false; }
-document.getElementById("tab_history").onclick = function() { changeTab("history"); return false; }
+document.getElementById("tab-options").onclick = function() { changeTab("options"); return false; }
+document.getElementById("tab-history").onclick = function() { changeTab("history"); return false; }
 
 function changeTab(tab) {
 	document.getElementById("options").style.display = "none";
@@ -46,23 +46,36 @@ function loadHistoryItems() {
 
 document.body.onload = function() {
 	changeTab("options");
-	document.getElementById("remove_cookies").checked = localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false;
-	document.getElementById("remove_cache").checked = localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false;
+	document.getElementById("remove-cookies").checked = localStorage.getItem(BG.OPTION_REMOVE_COOKIES) == "true" ? true : false;
+	document.getElementById("remove-cache").checked = localStorage.getItem(BG.OPTION_REMOVE_CACHE) == "true" ? true : false;
 	loadHistoryItems();
+
+	document.getElementById("page-title").textContent = chrome.i18n.getMessage("extOptionTitle");
+	document.getElementById("tab-options").textContent = chrome.i18n.getMessage("extTabOptions");
+	document.getElementById("tab-history").textContent = chrome.i18n.getMessage("extTabHistory");
+	document.getElementById("caption-remove-period").textContent = chrome.i18n.getMessage("extRemovePeriod");
+	document.getElementById("remove-button").textContent = chrome.i18n.getMessage("extRemoveButton");
+	document.getElementById("text-remove-cookies").textContent = chrome.i18n.getMessage("extRemoveCookies");
+	document.getElementById("text-remove-cache").textContent = chrome.i18n.getMessage("extRemoveCache");
+	document.getElementById("warning-message").innerHTML = chrome.i18n.getMessage("extWarningMessage");
+	document.getElementById("save-button").textContent = chrome.i18n.getMessage("extSaveButton");
+	document.getElementById("cancel-button").textContent = chrome.i18n.getMessage("extCancelButton");
+	document.getElementById("history-caption").textContent = chrome.i18n.getMessage("extCustomHistory");
+	document.getElementById("clear-button").textContent = chrome.i18n.getMessage("extClearAllButton");
 }
 
-document.getElementById("clear").onclick = function() {
+document.getElementById("clear-button").onclick = function() {
 	var items = document.getElementById("items");
 
 	while (items.firstChild) {
 		items.removeChild(items.firstChild);
 	}
 	localStorage.removeItem(BG.WORKING_HISTORY);
-	alert("All history successfully cleaned up");
+	alert(chrome.i18n.getMessage("extCleanUpAlert"));
 }
 
-document.getElementById("remove").onclick = function() {
-	var button = document.getElementById("remove");
+document.getElementById("remove-button").onclick = function() {
+	var button = document.getElementById("remove-button");
 	var target = document.getElementById("spinner");
 	var period = document.getElementById("period");
 	var options = period.options;
@@ -102,19 +115,19 @@ document.getElementById("remove").onclick = function() {
 					button.disabled = false;
 					period.disabled = false;
 					spinner.stop();
-					alert("Successfully removed.");
+					alert(chrome.i18n.getMessage("extHistoryRemoveAlert"));
 				}
 			);
 		}
 	}
 }
 
-document.getElementById("save").onclick = function() {
-	localStorage.setItem(BG.OPTION_REMOVE_COOKIES, document.getElementById("remove_cookies").checked);
-	localStorage.setItem(BG.OPTION_REMOVE_CACHE, document.getElementById("remove_cache").checked);
+document.getElementById("save-button").onclick = function() {
+	localStorage.setItem(BG.OPTION_REMOVE_COOKIES, document.getElementById("remove-cookies").checked);
+	localStorage.setItem(BG.OPTION_REMOVE_CACHE, document.getElementById("remove-cache").checked);
 	window.close();
 }
 
-document.getElementById("cancel").onclick = function() {
+document.getElementById("cancel-button").onclick = function() {
 	window.close();
 }

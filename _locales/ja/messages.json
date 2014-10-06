@@ -4,6 +4,62 @@
     "description": "拡張機能名"
   },
   
+  "extOptionTitle": {
+    "message": "拡張オプション"
+  },
+
+  "extTabOptions": {
+    "message": "詳細設定"
+  },
+
+  "extTabHistory": {
+    "message": "カスタム履歴"
+  },
+
+  "extRemovePeriod": {
+    "message": "特定の期間の履歴を削除"
+  },
+
+  "extRemoveButton": {
+    "message": "削除実行"
+  },
+
+  "extRemoveCookies": {
+    "message": "クッキーの削除:"
+  },
+
+  "extRemoveCache": {
+    "message": "キャッシュの削除:"
+  },
+
+  "extWarningMessage": {
+    "message": "<b>注意:</b> History Blocker を<u>クッキー削除ON</u>の設定で使用する場合、フェイスブックなどのログイン処理でクッキーが必要なサイトを正常に利用できなくなる可能性があります。"
+  },
+
+  "extSaveButton": {
+    "message": "保存して閉じる"
+  },
+
+  "extCancelButton": {
+    "message": "キャンセル"
+  },
+
+  "extCustomHistory": {
+    "message": "起動中に記録されたカスタム履歴"
+  },
+
+  "extClearAllButton": {
+    "message": "全て削除"
+  },
+
+  "extCleanUpAlert": {
+    "message": "全てのアイテムは正常に削除されました"
+  },
+
+  "extHistoryRemoveAlert": {
+    "message": "履歴が正常に削除されました"
+  },
+
   "extDesc": {
     "message": "ブラウジングした履歴の記録をブロックする拡張機能",
     "description": "拡張機能の説明"

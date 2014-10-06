@@ -3,7 +3,63 @@
     "message": "History Blocker",
     "description": "Extension name"
   },
-  
+
+  "extOptionTitle": {
+    "message": "Advanced"
+  },
+
+  "extTabOptions": {
+    "message": "Options"
+  },
+
+  "extTabHistory": {
+    "message": "History"
+  },
+
+  "extRemoveButton": {
+    "message": "Remove"
+  },
+
+  "extRemovePeriod": {
+    "message": "Remove history in specific period"
+  },
+
+  "extRemoveCookies": {
+    "message": "Remove cookies:"
+  },
+
+  "extRemoveCache": {
+    "message": "Remove cache:"
+  },
+
+  "extWarningMessage": {
+    "message": "<b>Warning:</b> If you use History Blocker with <u>cookies removing </u>on, you might not be able to use some websites like Facebook that use cookies for users logging in."
+  },
+
+  "extSaveButton": {
+    "message": "Save and Quit"
+  },
+
+  "extCancelButton": {
+    "message": "Cancel"
+  },
+
+  "extCustomHistory": {
+    "message": "History recorded during working"
+  },
+
+  "extClearAllButton": {
+    "message": "Clear all"
+  },
+
+  "extCleanUpAlert": {
+    "message": "All items have successfully cleaned up."
+  },
+
+  "extHistoryRemoveAlert": {
+    "message": "History have successfully removed."
+  },
+
   "extDesc": {
     "message": "Blocks webpages from being recorded to history",
     "description": "Extension description"
