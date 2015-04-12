@@ -5,8 +5,8 @@ var BG = chrome.extension.getBackgroundPage();
 
 const FAVICON_API = "http://www.google.com/s2/favicons?domain=";
 
-document.getElementById("tab-options").onclick = function() { changeTab("options"); return false; }
-document.getElementById("tab-history").onclick = function() { changeTab("history"); return false; }
+document.getElementById("tab-options").onclick = function() { changeTab("options"); return false; };
+document.getElementById("tab-history").onclick = function() { changeTab("history"); return false; };
 
 function changeTab(tab) {
 	document.getElementById("options").style.display = "none";
@@ -62,7 +62,7 @@ document.body.onload = function() {
 	document.getElementById("cancel-button").textContent = chrome.i18n.getMessage("extCancelButton");
 	document.getElementById("history-caption").textContent = chrome.i18n.getMessage("extCustomHistory");
 	document.getElementById("clear-button").textContent = chrome.i18n.getMessage("extClearAllButton");
-}
+};
 
 document.getElementById("clear-button").onclick = function() {
 	var items = document.getElementById("items");
@@ -72,7 +72,7 @@ document.getElementById("clear-button").onclick = function() {
 	}
 	localStorage.removeItem(BG.WORKING_HISTORY);
 	alert(chrome.i18n.getMessage("extCleanUpAlert"));
-}
+};
 
 document.getElementById("remove-button").onclick = function() {
 	var button = document.getElementById("remove-button");
@@ -80,7 +80,7 @@ document.getElementById("remove-button").onclick = function() {
 	var period = document.getElementById("period");
 	var options = period.options;
 	var onehour = 3600000;
-	var during
+	var during;
 
 	var spinner = new Spinner({
 		lines: 9,
@@ -120,14 +120,14 @@ document.getElementById("remove-button").onclick = function() {
 			);
 		}
 	}
-}
+};
 
 document.getElementById("save-button").onclick = function() {
 	localStorage.setItem(BG.OPTION_REMOVE_COOKIES, document.getElementById("remove-cookies").checked);
 	localStorage.setItem(BG.OPTION_REMOVE_CACHE, document.getElementById("remove-cache").checked);
 	window.close();
-}
+};
 
 document.getElementById("cancel-button").onclick = function() {
 	window.close();
-}
+};

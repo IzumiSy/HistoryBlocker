@@ -32,7 +32,7 @@ function toggleActivation()
 	isExtensionWorking = ! isExtensionWorking;
 	status = isExtensionWorking === true ? "ON" : "";
 	md = new Date();
-	if (isExtensionWorking == true) {
+	if (isExtensionWorking === true) {
 		workingSince = md.getTime();
 		workingHistory.unshift({"title": LOG_ACTIVATED, "url": md.toString()});
 	} else {
