@@ -76,20 +76,11 @@ document.getElementById("clear-button").onclick = function() {
 
 document.getElementById("remove-button").onclick = function() {
 	var button = document.getElementById("remove-button");
-	var target = document.getElementById("spinner");
 	var period = document.getElementById("period");
 	var options = period.options;
 	var onehour = 3600000;
 	var during;
-
-	var spinner = new Spinner({
-		lines: 9,
-		width: 2,
-		length: 2,
-		radius: 4,
-		top: "87px",
-		left: "180px"
-	}).spin(target);
+	
 	button.disabled = true;
 	period.disabled = true;
 
@@ -114,7 +105,6 @@ document.getElementById("remove-button").onclick = function() {
 				}, function() {
 					button.disabled = false;
 					period.disabled = false;
-					spinner.stop();
 					alert(chrome.i18n.getMessage("extHistoryRemoveAlert"));
 				}
 			);
