@@ -3,6 +3,14 @@ body {
 	font-size: 12px;
 }
 
+.tab-box {
+  background-color: #A9A9A9;
+}
+
+.tab-box .caption {
+  margin-left: 10px;
+}
+
 .warning {
 	font-size:11px;
 	width: 300px;
@@ -36,4 +44,8 @@ hr {
 	margin-bottom: 5px;
 	text-overflow: ellipsis;
 	overflow: hidden;
+}
+
+#history button#clear-button {
+  float: right;
 }
