@@ -1,60 +1,60 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="utf-8">
-	<title>Options</title>
-	<link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <title>Options</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-	<!-- Tab box -->
-	<div class="tab-box">
-		<h1 class="caption">
+  <!-- Tab box -->
+  <div class="tab-box">
+    <h1 class="caption">
      <span id="page-title"></span>
-		[<a href="#" id="tab-options">Options</a> / 
-		 <a href="#" id="tab-history">History</a>]
-		</h1>
-	</div>
+    [<a href="#" id="tab-options">Options</a> /
+     <a href="#" id="tab-history">History</a>]
+    </h1>
+  </div>
 
-	<!-- Options Tab -->
-	<div id="options">
-		<p>
-			<div id="remove-period"></div>
-			<select id="period">
-				<option value="1hour">1 Hour</option>
-				<option value="6hours">6 Hours</option>
-				<option value="12hours">12 Hours</option>
-				<option value="1day">1 Day</option>
-			</select>
-			<button id="remove-button">Remove</button>
-		</p>
-		<p>
-			<table>
-			<tr>
-				<td><label id="text-remove-cookies" for="remove-cookies">Remove cookies:</label></td>
-				<td><input type="checkbox" id="remove-cookies" /></td>
-			</tr>
-			<tr>
-				<td><label id="text-remove-cache" for="remove-cache">Remove cache:</label></td>
-				<td><input type="checkbox" id="remove-cache" /></td>
-			</tr>
-			</table>
-		</p>
-			<div id="warning-message" class="warning"></div>
-		<p>
-			<button id="save-button"></button>
-			<button id="cancel-button"></button>
-		</p>
-	</div>
+  <!-- Options Tab -->
+  <div id="options">
+    <p>
+      <div id="remove-period"></div>
+      <select id="period">
+        <option value="1hour">1 Hour</option>
+        <option value="6hours">6 Hours</option>
+        <option value="12hours">12 Hours</option>
+        <option value="1day">1 Day</option>
+      </select>
+      <button id="remove-button">Remove</button>
+    </p>
+    <p>
+      <table>
+      <tr>
+        <td><label id="text-remove-cookies" for="remove-cookies">Remove cookies:</label></td>
+        <td><input type="checkbox" id="remove-cookies" /></td>
+      </tr>
+      <tr>
+        <td><label id="text-remove-cache" for="remove-cache">Remove cache:</label></td>
+        <td><input type="checkbox" id="remove-cache" /></td>
+      </tr>
+      </table>
+    </p>
+      <div id="warning-message" class="warning"></div>
+    <p>
+      <button id="save-button"></button>
+      <button id="cancel-button"></button>
+    </p>
+  </div>
 
-	<!-- History Tab -->
-	<div id="history">
-		<button id="clear-button"></button>
-		<div id="history-caption"></div>
-		<hr/>
-		<ul id="items">
-			<!-- History displayes here -->
-		</ul>
-	</div>
-	<script src="js/options.js"></script>
+  <!-- History Tab -->
+  <div id="history">
+    <button id="clear-button"></button>
+    <div id="history-caption"></div>
+    <hr/>
+    <ul id="items">
+      <!-- History displayes here -->
+    </ul>
+  </div>
+  <script src="js/options.js"></script>
 </body>
 </html>
