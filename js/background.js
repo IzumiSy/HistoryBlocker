@@ -1,64 +1,93 @@
 
 // background.js
 
-var isExtensionWorking;
-var workingSince;
-
 const OPTION_REMOVE_COOKIES = "RemoveCookies";
-const OPTION_REMOVE_CACHE = "RemoveCache";
-const WORKING_HISTORY = "workingHistory";
-const LOG_ACTIVATED = "Activated on ";
-const LOG_DEACTIVATED = "Deactivated on ";
+const OPTION_REMOVE_CACHE   = "RemoveCache";
+const WORKING_HISTORY       = "workingHistory";
+const LOG_ACTIVATED         = "Activated on ";
+const LOG_DEACTIVATED       = "Deactivated on ";
 
-// Initialize
-isExtensionWorking = false;
-workingSince = 0;
-workingHistory = [];
+var extensionData = {
+  isWorking: false,
+  since:     0,
+  history:   []
+};
 
-chrome.tabs.onUpdated.addListener(function(id, info, tab) {
-  if (isExtensionWorking) {
-    if (info.status == "complete") {
-      console.log("Removed: " + tab.url);
-      workingHistory.unshift({"title": tab.title, "url": tab.url});
+var miscFunctions = {
+  executeHistoryCleanUp: function(since) {
+    chrome.browsingData.remove({
+      "since": extensionData.since,
+      "originTypes": { "unprotectedWeb": true }
+    }, {
+      "history": true,
+      "cookies": localStorage.getItem(OPTION_REMOVE_COOKIES) == "true" ? true : false,
+      "cache": localStorage.getItem(OPTION_REMOVE_CACHE) == "true" ? true : false
+    });    
+  },
+  
+  isChromePage: function(url) {
+    if (url.indexOf("chrome://") === 0) {
+      if (url.indexOf("chrome://history/") === 0) { 
+        miscFunctions.executeHistoryCleanUp();
+      }
+      return true;
+    }
+    return false;
+  },
+  
+  recordLog: function(title, url) {
+    console.log("Removed: " + url);
+    extensionData.history.unshift({ "title": title, "url": url });    
+  },
+  
+  logActivate: function(time) {
+    extensionData.history.unshift({
+      "title": LOG_ACTIVATED, 
+      "url": time.toString()
+    });    
+  },
+  
+  logDeactivate: function(time) {
+    extensionData.history.unshift({
+      "title": LOG_DEACTIVATED,
+      "url": time.toString()
+    });    
+  }
+};
+
+var eventListeners = {
+  onUpdated: function(id, info, tab) {
+    if (extensionData.isWorking && info.status == "complete") {
+      if (!miscFunctions.isChromePage(tab.url)) {
+        miscFunctions.recordLog(tab.title, tab.url);
+      }
+    }
+  },
+  
+  onClicked: function() {
+    var activatedTime, status;
+  
+    extensionData.isWorking = ! extensionData.isWorking;
+    status = extensionData.isWorking === true ? "ON" : "";
+    time = new Date();
+    if (extensionData.isWorking === true) {
+      extensionData.since = time.getTime();
+      miscFunctions.logActivate(extensionData.since);
+    } else {
+      miscFunctions.executeHistoryCleanUp(extensionData.since);
+      miscFunctions.logDeactivate(time.getTime());
+      localStorage.setItem(WORKING_HISTORY, JSON.stringify(extensionData.history));
+    }
+    chrome.browserAction.setBadgeText({text: status});
+  },
+  
+  onCommand: function(command) {
+    if (command == "toggle-blocking") {
+      eventListeners.onClicked();
     }
   }
-});
+};
 
-function toggleActivation()
-{
-  var md;
-  var status;
-
-  isExtensionWorking = ! isExtensionWorking;
-  status = isExtensionWorking === true ? "ON" : "";
-  md = new Date();
-  if (isExtensionWorking === true) {
-    workingSince = md.getTime();
-    workingHistory.unshift({"title": LOG_ACTIVATED, "url": md.toString()});
-  } else {
-    chrome.browsingData.remove(
-      {
-        "since": workingSince,
-        "originTypes": {
-          "unprotectedWeb": true
-        }
-      }, {
-        "history": true,
-        "cookies": localStorage.getItem(OPTION_REMOVE_COOKIES) == "true" ? true : false,
-        "cache": localStorage.getItem(OPTION_REMOVE_CACHE) == "true" ? true : false
-      }
-    );
-    workingHistory.unshift({"title": LOG_DEACTIVATED, "url": md.toString()});
-    localStorage.setItem(WORKING_HISTORY, JSON.stringify(workingHistory));
-    temporalHistory = [];
-  }
-  chrome.browserAction.setBadgeText({text: status});
-}
-
-chrome.commands.onCommand.addListener(function(command) {
-  if (command == "toggle-blocking") {
-    toggleActivation();
-  }
-});
-
-chrome.browserAction.onClicked.addListener(toggleActivation);
+chrome.tabs.onUpdated.addListener(eventListeners.onUpdated);
+chrome.browserAction.onClicked.addListener(eventListeners.onClicked);
+chrome.commands.onCommand.addListener(eventListeners.onCommand);
