@@ -69,13 +69,13 @@ var eventListeners = {
   
     extensionData.isWorking = ! extensionData.isWorking;
     status = extensionData.isWorking === true ? "ON" : "";
-    time = new Date();
+    currentTime = new Date();
     if (extensionData.isWorking === true) {
-      extensionData.since = time.getTime();
-      miscFunctions.logActivate(extensionData.since);
+      extensionData.since = currentTime.getTime();
+      miscFunctions.logActivate(currentTime);
     } else {
       miscFunctions.executeHistoryCleanUp(extensionData.since);
-      miscFunctions.logDeactivate(time.getTime());
+      miscFunctions.logDeactivate(currentTime);
       localStorage.setItem(WORKING_HISTORY, JSON.stringify(extensionData.history));
     }
     chrome.browserAction.setBadgeText({text: status});
