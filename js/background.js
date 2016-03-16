@@ -1,11 +1,11 @@
 
 // background.js
 
-const OPTION_REMOVE_COOKIES = "RemoveCookies";
-const OPTION_REMOVE_CACHE   = "RemoveCache";
-const WORKING_HISTORY       = "workingHistory";
-const LOG_ACTIVATED         = "Activated on ";
-const LOG_DEACTIVATED       = "Deactivated on ";
+var OPTION_REMOVE_COOKIES = "RemoveCookies";
+var OPTION_REMOVE_CACHE   = "RemoveCache";
+var WORKING_HISTORY       = "workingHistory";
+var LOG_ACTIVATED         = "Activated on ";
+var LOG_DEACTIVATED       = "Deactivated on ";
 
 var extensionData = {
   isWorking: false,
