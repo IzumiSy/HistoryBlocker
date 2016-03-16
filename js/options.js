@@ -2,7 +2,7 @@
 // options.js
 
 (function(){
-  const FAVICON_API = "http://www.google.com/s2/favicons?domain=";
+  var FAVICON_API = "http://www.google.com/s2/favicons?domain=";
 
   var BG = chrome.extension.getBackgroundPage();
 
